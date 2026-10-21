@@ -1,0 +1,16 @@
+version: v2
+name: flask-getting-started
+build:
+  method: docker
+  context: .
+  dockerfile: ./Dockerfile
+services:
+  - name: web
+    type: web
+    run: gunicorn app:app
+    port: 8000
+    cpuCores: 0.25
+    ramMegabytes: 256
+    healthCheck:
+      enabled: true
+      httpPath: /healthz
